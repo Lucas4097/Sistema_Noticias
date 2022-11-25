@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::middleware('admin')->prefix('dashboard')->group(function(){
+    Route::get('/', [DashboardController::class, 'dashboardPage'])->name('dashboardPage');
+    Route::get('/criar', [DashboardController::class, 'dashboardCreatePage'])->name('dashboardCreatePage');
+    Route::get('/editar', [DashboardController::class, 'dashboardEditPage'])->name('dashboardEditPage');
+    Route::delete('/excluir', [DashboardController::class, 'dashboardDelete'])->name('dashboardDelete');
+    Route::post('criar', [DashboardController::class, 'dashboardCreate'])->name('dashboardCreate');
+});
+
+Route::get('/home', [HomeController::class, 'homePage'])->name('homePage');
+
 
 require __DIR__.'/auth.php';
