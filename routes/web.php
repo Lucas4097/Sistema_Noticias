@@ -25,6 +25,8 @@ Route::middleware('admin')->prefix('dashboard')->group(function(){
     Route::get('/editar', [DashboardController::class, 'dashboardEditPage'])->name('dashboardEditPage');
     Route::delete('/excluir', [DashboardController::class, 'dashboardDelete'])->name('dashboardDelete');
     Route::post('criar', [DashboardController::class, 'dashboardCreate'])->name('dashboardCreate');
+    Route::post('editar', [DashboardController::class, 'dashboardEdit'])->name('dashboardEdit');
+
 });
 
 Route::get('/home', [HomeController::class, 'homePage'])->name('homePage');

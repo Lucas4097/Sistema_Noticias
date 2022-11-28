@@ -19,9 +19,15 @@ class CreateNoticesTable extends Migration
             $table->string('preview');
             $table->string('image');
             $table->longText('description');
-            $table->integer('acess')->nullable();
+            $table->integer('acess')->default(0);
             $table->enum('type', [1, 2, 3])->comment('1 - noticias 2 - destaque 3 - recomendado');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+            $table->enum('category', [1, 2, 3, 4, 5, 6])->comment('1 - esporte 2 - política 3 - saúde 4 - mundo 5 - cultura 6 - outros');
             $table->timestamps();
+
         });
     }
 

@@ -1,8 +1,10 @@
-.bg-navbar{
+/* .bg-navbar{
     background-color: ;
+} */
+
+.bg-red{
+    background-color: red !important;
 }
-
-
 
 #searchNav {
     background-color: white;

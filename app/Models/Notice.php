@@ -16,5 +16,11 @@ class Notice extends Model
         'description',
         'acess',
         'type',
+        'user_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

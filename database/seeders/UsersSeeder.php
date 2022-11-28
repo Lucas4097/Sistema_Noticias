@@ -21,5 +21,7 @@ class UsersSeeder extends Seeder
             'avatar' => 'teste',
             'password' => bcrypt('12345678'),
         ]);
+
+        User::factory()->times(5)->create();
     }
 }

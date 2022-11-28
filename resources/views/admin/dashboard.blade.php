@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('main')
     <section class="container">
@@ -16,37 +16,49 @@
                     <th scope="col">id</th>
                     <th scope="col">Título</th>
                     <th scope="col">Prévia</th>
-                    <th scope="col">Acessos</th>
-                    <th scope="col">Imagem</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Acessos</th>
+                    <th scope="col">Autor</th>
                     <th scope="col">Criado</th>
                     <th scope="col">Atualizado</th>
-                    <th scope="col">Autor</th>
-                    <th scope="col">Editado por</th>
                     <th scope="col">Ações</th>
                 </tr>
             </thead>
             <tbody>
                 @forelse ($notices as $notice)
                     <tr>
-                        <td>{{ $notice->id }}</td>
+                        <td>{{ $notice->id }}
                         <td>{{ $notice->title }}</td>
                         <td>{{ $notice->preview }}</td>
-                        <td>{{ $notice->acess }}</td>
-                        <td><img src="{{ 'storage/'.$notice->image }}" alt=""></td>
                         <td>
                             @if ($notice->type == 1)
-                                Notícia
+                            Notícia
                             @elseif ($notice->type == 2)
-                                Destaque
+                            Destaque
                             @elseif ($notice->type == 3)
-                                Recomendados
+                            Recomendados
                             @endif
                         </td>
+                        <td>
+                            @if ($notice->category == 1)
+                            Esporte
+                            @elseif ($notice->category == 2)
+                            Política
+                            @elseif ($notice->category == 3)
+                            Saúde
+                            @elseif ($notice->category == 4)
+                            Mundo
+                            @elseif ($notice->category == 5)
+                            Cultura
+                            @elseif ($notice->category == 6)
+                            Outros
+                            @endif
+                        </td>
+                        <td>{{ $notice->acess }}</td>
+                        <td>{{ $notice->user->name }}</td>
                         <td>{{ date('d/m/Y', strtotime($notice->created_at)) }}</td>
-                        <td>{{ date('d/m/Y', strtotime($notice->update_at)) }}</td>
-                        <td>Criado</td>
-                        <td>Atualizado</td>
+                        <td>{{ date('d/m/Y', strtotime($notice->updated_at)) }}</td>
                         <td class="d-flex flex-wrap gap-2">
                             <a href="{{ route('dashboardEditPage', ['id' => $notice->id]) }}"
                                 class="btn btn-outline-success">Editar</a>
@@ -61,5 +73,7 @@
                 @endforelse
             </tbody>
         </table>
+
+        {{ $notices->appends(['search' => request()->get('search', '')])->links('vendor.pagination.bootstrap-4') }}
     </section>
 @endsection
