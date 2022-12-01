@@ -18,7 +18,7 @@ class UsersSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'type' => 2,
-            'avatar' => 'teste',
+            'photo' => 'default/person.svg',
             'password' => bcrypt('12345678'),
         ]);
 

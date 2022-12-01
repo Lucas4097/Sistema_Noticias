@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\User\HomeController;
+use App\Http\Controllers\User\NoticeController;
+use App\Http\Controllers\User\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('user.notice');
 });
 
 Route::middleware('admin')->prefix('dashboard')->group(function(){
@@ -29,7 +31,14 @@ Route::middleware('admin')->prefix('dashboard')->group(function(){
 
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/usuario', [ProfileController::class, 'user'])->name('user');
+    Route::post('/usuario/editar', [ProfileController::class, 'edit'])->name('userEdit');
+});
+
 Route::get('/home', [HomeController::class, 'homePage'])->name('homePage');
+Route::get('/buscas', [NoticeController::class, 'searchPage'])->name('searchPage');
+Route::get('/noticia', [NoticeController::class, 'noticePage'])->name('noticePage');
 
 
 require __DIR__.'/auth.php';

@@ -23,6 +23,8 @@
             <main>
                 @yield('main')
             </main>
+
+            @include('layouts.footer')
         </div>
 
         <!-- Scripts -->

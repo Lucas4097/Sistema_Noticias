@@ -17,9 +17,10 @@ class NoticeFactory extends Factory
         return [
             'title' => $this->faker->text(15),
             'preview' => $this->faker->text(50),
-            'image' => Str::random(50),
+            'image' => 'default/testeimg.jpg',
             'description' => $this->faker->text(),
-            // 'type' => 1,
+            'type' => rand(1,3),
+            'category' => rand(1,6),
             'user_id' => rand(1,1),
             'created_at' => now(),
             'updated_at' => now(),

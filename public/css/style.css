@@ -1,9 +1,11 @@
-/* .bg-navbar{
-    background-color: ;
-} */
-
+/* navbar */
 .bg-red{
-    background-color: red !important;
+    background-image: linear-gradient(#C4170c, #830303);
+}
+
+.nav-right{
+    position: absolute;
+    right: 30px;
 }
 
 #searchNav {
@@ -21,6 +23,25 @@
 }
 
 .dropdown-avatar {
-    left: -150% !important;
+    left: -260% !important;
     width: 200px !important;
+}
+
+/* Home - Carousel */
+.carousel{
+    width: 920px;
+}
+
+.bg-carousel{
+    height: 380px !important;
+    width: 10px !important;
+    background-color: #830303 !important;
+}
+
+.carousel-control-prev{
+    left: -90px !important;
+}
+
+.carousel-control-next{
+    right: -90px !important;
 }
