@@ -11,7 +11,14 @@ class Comment extends Model
 
     protected $fillable = [
         'comment',
+        'user_id',
+        'notice_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     protected $table = 'comments';
 }

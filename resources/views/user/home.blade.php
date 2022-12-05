@@ -4,8 +4,8 @@
     <section class="mx-auto mt-2 carousel">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @foreach ($carousel as $carousel)
-                    <div class="carousel-item active">
+                @foreach ($carousel as $key => $carousel)
+                    <div class="carousel-item @if ($key == 0) active @endif">
                         <div class="d-flex justify-content-center align-items-center">
                             <div class="col-1 bg-carousel">
                             </div>
@@ -17,31 +17,6 @@
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class="carousel-item active">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="col-1 bg-carousel">
-                        </div>
-                        <div class="col-4 m-3">
-                            <h2>Lorem</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus explicabo
-                                pariatur dolore laboriosam voluptas repudiandae dicta temporibus, aliquam.</p>
-                        </div>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                            class="d-block col-7" alt="...">
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="d-flex">
-                        <div class="col-4 m-3">
-                            <h2>Teste</h2>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus explicabo
-                                pariatur dolore laboriosam voluptas repudiandae dicta temporibus, aliquam.</p>
-                        </div>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                            class="d-block col-8" alt="...">
-                    </div>
-
-                </div> --}}
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                 data-bs-slide="prev">
@@ -66,110 +41,59 @@
 
     <div class="container row mt-5 mx-auto">
         <article class="col-7">
+            @foreach ($notices as $key => $notice)
+                <section class="mb-2">
+                    @if (($key + 2) % 2 == 0)
+                        <h1>
+                            @foreach (['Esporte', 'Política', 'Saúde', 'Mundo', 'Cultura'] as $key => $value)
+                                @if ($key + 1 == $notice->category)
+                                    {{ $value }}
+                                    @php break; @endphp
+                                @endif
+                            @endforeach
+                        </h1>
+                        <hr>
+                    @endif
+
+                    <a href="{{ route('noticePage', ['id' => $notice->id]) }}" class="card border-0 mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <img src="{{ asset('storage/' . $notice->image) }}" class="img-fluid rounded-start"
+                                    alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $notice->title }}</h5>
+                                    <p class="card-text">{{ $notice->description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+            @endforeach
+
+
             <section class="mb-2">
-                <h1>Esporte</h1>
+                <h1>Outros</h1>
                 <hr>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
+                @foreach ($others as $notice)
+                    <a href="{{ route('noticePage', ['id' => $notice->id]) }}" class="card border-0 mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <img src="{{ asset('storage/' . $notice->image) }}" class="img-fluid rounded-start"
+                                    alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $notice->title }}</h5>
+                                    <p class="card-text">{{ $notice->description }}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                @endforeach
             </section>
-            <section class="mb-2">
-                <h1>Esporte</h1>
-                <hr>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </section>
-            <section class="mb-2">
-                <h1>Esporte</h1>
-                <hr>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                    to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex align-items-center">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4LqjrGP-1vkt2mo4FxkQE7uwSTJX_U11bYGqPvoTwJOsrzZwiIbay85wXIWJs85RocZU&usqp=CAU"
-                                class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in
-                                    to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </section>
+
         </article>
 
         <article class="ms-5 col-4">
@@ -178,7 +102,7 @@
                 <hr>
                 @foreach ($acess as $key => $acess)
                     <div class="">
-                        <a class="d-flex" href="">
+                        <a class="d-flex" href="{{ route('noticePage', ['id' => $acess->id]) }}">
                             <h1 class="me-1">{{ $key + 1 }}.</h1>
                             <p>{{ $acess->title }}</p>
                         </a>
@@ -189,25 +113,24 @@
 
             <section class="mb-2">
                 <h3 class="text-center">Recomendações</h3>
-                @auth
-                @else
-                    @foreach ($recomendation as $recomendation)
-                        <a href="#" class="card border-0 mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4 d-flex align-items-center">
-                                    <img src="{{ asset('storage/'. $recomendation->image) }}" class="img-fluid rounded-start" alt="...">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $recomendation->title }}</h5>
-                                        <p class="card-text">{{ $recomendation->description }}</p>
-                                    </div>
+                @foreach ($recomendations as $recomendation)
+                    <a href="{{ route('noticePage', ['id' => $recomendation->id]) }}" class="card border-0 mb-3"
+                        style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-center">
+                                <img src="{{ asset('storage/' . $recomendation->image) }}" class="img-fluid rounded-start"
+                                    alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $recomendation->title }}</h5>
+                                    <p class="card-text">{{ $recomendation->description }}</p>
+                                    <p class="card-text">{{ $recomendation->category }}</p>
                                 </div>
                             </div>
-                        </a>
-                    @endforeach
-                @endauth
-
+                        </div>
+                    </a>
+                @endforeach
             </section>
         </article>
     </div>

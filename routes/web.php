@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('user.notice');
+    return redirect()->route('homePage');
 });
 
 Route::middleware('admin')->prefix('dashboard')->group(function(){
@@ -34,10 +34,11 @@ Route::middleware('admin')->prefix('dashboard')->group(function(){
 Route::middleware('auth')->group(function () {
     Route::get('/usuario', [ProfileController::class, 'user'])->name('user');
     Route::post('/usuario/editar', [ProfileController::class, 'edit'])->name('userEdit');
+    Route::post('comentar', [NoticeController::class, 'commentStore'])->name('commentStore');
 });
 
 Route::get('/home', [HomeController::class, 'homePage'])->name('homePage');
-Route::get('/buscas', [NoticeController::class, 'searchPage'])->name('searchPage');
+Route::get('/buscas/{category?}', [NoticeController::class, 'searchPage'])->name('searchPage');
 Route::get('/noticia', [NoticeController::class, 'noticePage'])->name('noticePage');
 
 

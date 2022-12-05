@@ -40,7 +40,7 @@
         <div class="d-flex nav-right">
             <form action="{{ route('searchPage') }}" method="GET" class="d-flex" role="search">
                 <input name="search" class="form-control me-2" type="text" placeholder="Search" aria-label="Search" id="searchNav">
-                <button class="btn btn-outline-primary" type="submit">
+                <button class="btn btn-outline-light" type="submit">
                     Search
                 </button>
             </form>
@@ -58,13 +58,15 @@
                         @auth
                             <li class="dropdown-item lead">Olá {{ Auth::user()->name }}</li>
                             <li><a class="dropdown-item" href="{{ route('user') }}">Perfil</a></li>
-                            <li><a class="dropdown-item text-danger" href="{{ route('logout') }}">Deslogar</a></li>
-                        @else
-                            <li class="bg-danger">--Quando desconectado--</li>
                             <li>
-                                <button class="btn btn-primary">Cadastrar</button>
-                                <button class="btn btn-success">Logar</button>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Desconectar</button>
+                                </form>
                             </li>
+                        @else
+                            <li><a href="{{ route('register') }}" class="dropdown-item">Cadastrar</a></li>
+                            <li><a href="{{ route('login') }}" class="dropdown-item">Logar</a></li>
                         @endauth
                     </ul>
                 </div>

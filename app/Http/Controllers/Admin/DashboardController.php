@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\StoreUpdateNotice;
+use App\Http\Requests\Admin\StoreNotice;
+use App\Http\Requests\Admin\UpdateNotice;
 use App\Models\Notice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,7 @@ class DashboardController extends Controller
         return view('admin.dashboardCreate');
     }
 
-    public function dashboardCreate(StoreUpdateNotice $request)
+    public function dashboardCreate(StoreNotice $request)
     {
         $notice = $request->except('_token');
         $notice['image'] = $request->image->store('images');
@@ -43,7 +44,7 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function dashboardEdit(StoreUpdateNotice $request)
+    public function dashboardEdit(UpdateNotice $request)
     {
         $directory = Notice::findOrFail($request->id);
 

@@ -74,6 +74,6 @@
             </tbody>
         </table>
 
-        {{ $notices->appends(['search' => request()->get('search', '')])->links('vendor.pagination.bootstrap-4') }}
+        {{ $notices->appends(['search' => request()->get('search', '')])->onEachSide(1)->links('vendor.pagination.bootstrap-4') }}
     </section>
 @endsection
