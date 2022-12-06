@@ -37,7 +37,7 @@ class HomeController extends Controller
 
         if (Auth::check()){
             $history = History::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first();
-            if (!empty($history->all())) {
+            if (!empty($history)) {
                 $category = $history->notice->category;
             }
         }

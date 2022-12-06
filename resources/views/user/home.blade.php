@@ -5,17 +5,19 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 @foreach ($carousel as $key => $carousel)
-                    <div class="carousel-item @if ($key == 0) active @endif">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <div class="col-1 bg-carousel">
+                    <a href="{{ route('noticePage', ['id' => $carousel->id]) }}">
+                        <div class="carousel-item @if ($key == 0) active @endif">
+                            <div class="d-flex justify-content-center align-items-center">
+                                <div class="col-1 bg-carousel">
+                                </div>
+                                <div class="col-4 m-3">
+                                    <h2>{{ $carousel->title }}</h2>
+                                    <p>{{ $carousel->description }}</p>
+                                </div>
+                                <img src="{{ asset('storage/' . $carousel->image) }}" class="d-block col-7" alt="...">
                             </div>
-                            <div class="col-4 m-3">
-                                <h2>{{ $carousel->title }}</h2>
-                                <p>{{ $carousel->description }}</p>
-                            </div>
-                            <img src="{{ asset('storage/' . $carousel->image) }}" class="d-block col-7" alt="...">
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -101,11 +103,12 @@
                 <h3 class="text-center">Mais lidas</h3>
                 <hr>
                 @foreach ($acess as $key => $acess)
-                    <div class="">
-                        <a class="d-flex" href="{{ route('noticePage', ['id' => $acess->id]) }}">
-                            <h1 class="me-1">{{ $key + 1 }}.</h1>
+                    <div class="d-flex justify-content-between">
+                        <a class="d-flex align-items-center" href="{{ route('noticePage', ['id' => $acess->id]) }}">
+                            <h1 class="me-2">{{ $key + 1 }}.</h1>
                             <p>{{ $acess->title }}</p>
                         </a>
+                        <p class="">{{ $acess->acess }}</p>
                     </div>
                     <hr>
                 @endforeach
@@ -125,7 +128,6 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $recomendation->title }}</h5>
                                     <p class="card-text">{{ $recomendation->description }}</p>
-                                    <p class="card-text">{{ $recomendation->category }}</p>
                                 </div>
                             </div>
                         </div>

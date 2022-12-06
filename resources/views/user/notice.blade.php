@@ -8,7 +8,13 @@
             <p class="lead">{{ $notice->description }}</p>
         </section>
 
-        <section class="mb-3 w-50 mx-auto">
+        <section class="mt-5 mb-3 w-50 mx-auto">
+
+            <!-- Session Status -->
+            <x-auth-session-status class="mb-4" :status="session('status')" />
+
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mb-4" :errors="$errors" />
             @auth
                 <form class="mb-2" action="{{ route('commentStore') }}" method="POST">
                     @csrf
@@ -29,13 +35,14 @@
                 </div>
             @endauth
 
+
             <div class="mt-5">
                 @forelse ($comments as $comment)
-                    <div class="card mb-3 border-0" style="max-width: 700px;">
+                    <div class="card mb-4 border-0" style="max-width: 700px;">
                         <div class="row g-0">
-                            <div class="col-1">
-                                <img src="{{ asset('storage/' . $comment->user->photo) }}" class="img-fluid rounded-circle"
-                                    alt="...">
+                            <div class="col-1 me-3">
+                                <img src="{{ asset('storage/' . $comment->user->photo) }}" class="rounded-circle bg-dark"
+                                    width="100%" alt="...">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body p-0">
@@ -51,7 +58,7 @@
                     </div>
                 @endforelse
 
-                {{ $comments->appends(['search' => request()->get('search', '')])->links('vendor.pagination.bootstrap-4') }}
+                {{ $comments->appends(['id' => request()->get('id', '')])->links('vendor.pagination.bootstrap-4') }}
 
             </div>
         </section>

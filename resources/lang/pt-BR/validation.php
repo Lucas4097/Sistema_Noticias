@@ -209,7 +209,9 @@ return [
         'preview' => 'resumo',
         'type' => 'tipo',
         'category' => 'categoria',
-        'image' => 'imagem'
+        'image' => 'imagem',
+        'comment' => 'comentário',
+        'photo' => 'foto',
     ],
 
 ];

@@ -1,3 +1,11 @@
+/* auth */
+.title-auth{
+    font-size: 3rem;
+    color: white !important;
+    margin: 30px;
+}
+
+
 /* navbar */
 .bg-red{
     background-image: linear-gradient(#C4170c, #830303);
@@ -48,5 +56,9 @@
 
 a{
     text-decoration: none;
-    color: inherit;
+    color: red;
+}
+
+a:hover{
+    color: black;
 }

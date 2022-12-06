@@ -33,7 +33,8 @@ Route::middleware('admin')->prefix('dashboard')->group(function(){
 
 Route::middleware('auth')->group(function () {
     Route::get('/usuario', [ProfileController::class, 'user'])->name('user');
-    Route::post('/usuario/editar', [ProfileController::class, 'edit'])->name('userEdit');
+    Route::post('/usuario/editar', [ProfileController::class, 'userEdit'])->name('userEdit');
+    Route::post('/foto/editar', [ProfileController::class, 'photoEdit'])->name('photoEdit');
     Route::post('comentar', [NoticeController::class, 'commentStore'])->name('commentStore');
 });
 

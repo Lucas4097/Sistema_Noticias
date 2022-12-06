@@ -1,16 +1,14 @@
 @extends('layouts.admin')
 
 @section('main')
-    <section class="container">
-        <a href="{{ route('dashboardCreatePage') }}" class="btn btn-primary">Criar Noticia</a>
-
+    <section class="container mt-5">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <table class="table table-bordered border-warning table-dark">
+        <table class="table table-bordered border-danger table-info">
             <thead>
                 <tr>
                     <th scope="col">id</th>
@@ -61,11 +59,11 @@
                         <td>{{ date('d/m/Y', strtotime($notice->updated_at)) }}</td>
                         <td class="d-flex flex-wrap gap-2">
                             <a href="{{ route('dashboardEditPage', ['id' => $notice->id]) }}"
-                                class="btn btn-outline-success">Editar</a>
+                                class="btn btn-success">Editar</a>
                             <form action="{{ route('dashboardDelete', ['id' => $notice->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-outline-danger" type="submit">Excluir</button>
+                                <button class="btn btn-danger" type="submit">Excluir</button>
                             </form>
                         </td>
                     </tr>

@@ -1,13 +1,14 @@
 <div class="bg-red" style="height: 100vh">
     <style>
         #teste{
-            height: calc(100% - 60px);
+            height: calc(100% - 90px);
             /* height: 100%; */
         }
     </style>
-    <div class="flex justify-end items-center p-6" style="height:60px;">
-        <h1 class="">teste</h1>
+    <div class="flex justify-end items-end p-4" style="height:60px;">
+        <a href="/"><h1 class="title-auth">NEWS</h1></a>
     </div>
+
     <div id="teste" class="flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
 
         <div>

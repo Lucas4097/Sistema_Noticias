@@ -10,29 +10,31 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form action="{{ route('userEdit', ['id' => Auth::user()->id]) }}" method="post" class="w-75 mx-auto row" enctype="multipart/form-data">
-            @csrf
-            <div class="col">
+        <div class="w-75 mx-auto row">
+            <form action="{{ route('userEdit', ['id' => Auth::user()->id]) }}" method="post" class="col">
+                @csrf
                 <div class="mb-2">
                     <label for="">Nome</label>
-                    <input name="name" type="text" class="form-control" value="{{ Auth::user()->name }}" disabled>
+                    <input name="name" type="text" class="form-control" value="{{ Auth::user()->name }}">
                 </div>
                 <div class="mb-2">
                     <label for="">Email</label>
-                    <input name="email" type="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
+                    <input type="email" class="form-control" value="{{ Auth::user()->email }}" disabled>
                 </div>
                 <div class="mb-2">
-                    <label for="">Senha</label>
-                    <input type="password" name="password" id="" class="form-control" value="{{ Auth::user()->password }}" disabled>
+                    <button type="submit" class="btn btn-success">Editar o nome</button>
                 </div>
+            </form>
+            <div class="ms-2 col">
+                <form action="{{ route('photoEdit', ['id' => Auth::user()->id]) }}" method="post"
+                    enctype="multipart/form-data">
+                    @csrf
+                    <img class="rounded-circle border border-dark border-2 mb-2 bg-dark"
+                        src="{{ asset('storage/' . Auth::user()->photo) }}" alt="" style="width: 140px;">
+                    <input type="file" src="" alt="" name="photo" class="form-control mb-2">
+                    <button type="submit" class="btn btn-success">Enviar foto</button>
+                </form>
             </div>
-            <div class="col">
-                <img src="{{ asset('storage/' . Auth::user()->photo) }}" alt="" style="width: 160px;">
-                <input type="file" src="" alt="" name="photo" class="form-control">
-            </div>
-            <div class="mb-2">
-                <button type="submit" class="btn btn-success w-100">Editar</button>
-            </div>
-        </form>
+        </div>
     </section>
 @endsection

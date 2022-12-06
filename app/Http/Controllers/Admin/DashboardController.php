@@ -28,6 +28,7 @@ class DashboardController extends Controller
 
     public function dashboardCreate(StoreNotice $request)
     {
+        
         $notice = $request->except('_token');
         $notice['image'] = $request->image->store('images');
         Notice::create($notice);

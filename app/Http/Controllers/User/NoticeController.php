@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\StoreComment;
 use App\Models\Comment;
 use App\Models\History;
 use App\Models\Notice;
@@ -39,7 +40,7 @@ class NoticeController extends Controller
         ]);
     }
 
-    public function commentStore(Request $request)
+    public function commentStore(StoreComment $request)
     {
         $comments = $request->except('_token');
         $comments['user_id'] = Auth::user()->id;

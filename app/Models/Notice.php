@@ -17,6 +17,7 @@ class Notice extends Model
         'acess',
         'type',
         'user_id',
+        'category',
     ];
 
     public function user()
